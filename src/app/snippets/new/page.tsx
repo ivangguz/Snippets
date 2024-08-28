@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { redirect } from "next/navigation";
+import { redirect, notFound } from "next/navigation";
 import Inputs from "@/components/Inputs";
 
 export default function SnippetCreatePage() {
@@ -18,8 +18,6 @@ export default function SnippetCreatePage() {
         code,
       },
     });
-    console.log(snippet);
-
     //Redirect the user back to the root user
     redirect("/");
   }
