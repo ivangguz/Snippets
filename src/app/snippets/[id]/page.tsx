@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db } from "@/db";
 import * as actions from "@/actions";
+import exp from "constants";
 
 interface SnippetShowPageProps{
     params:{
@@ -40,4 +41,14 @@ export default async function SnippetShowPage(props: SnippetShowPageProps){
             </code>
         </pre>
     </div>);
+}
+
+export async function generateStaticParams(){
+    const snippets = await db.snippet.findMany();
+
+    return snippets.map((snippets) => {
+        return {
+            id: snippets.id.toString(),
+        };
+    });
 }
